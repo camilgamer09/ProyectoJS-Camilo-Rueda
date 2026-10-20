@@ -7,3 +7,17 @@
   --fondo: #121214; --texto: #f3f4f6; --gris: #9ca3af; --borde: #34343b;
   --campo: #1f1f24; --negro: #f3f4f6; --sobre-negro: #111;
 }
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: var(--fondo);
+  color: var(--texto);
+  overflow-x: hidden;
+}
+
+.contenedor { max-width: 940px; margin: 0 auto; padding: 0 16px; }
+.gris { color: var(--gris); font-size: 13px; }
+h2 { margin: 24px 0 0; font-size: 25px; }
