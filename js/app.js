@@ -20,3 +20,13 @@ function crear(etiqueta, texto, clase) {
 function dinero(n) {
   return "$" + n.toFixed(2) + " USD";
 }
+
+function nombreCategoria(c) {
+ const nombres = {
+  electronics: "Electrónica",
+  jewelery: "Joyería",
+  "men's clothing": "Ropa de hombre",
+  "women's clothing": "Ropa de mujer"
+ };
+ return nombres[c] || c;
+}
