@@ -1,0 +1,9 @@
+:root {
+  --fondo: #fff; --texto: #111; --gris: #6b7280; --borde: #e5e7eb;
+  --campo: #f3f3f5; --negro: #0a0a14; --sobre-negro: #fff;
+}
+
+[data-tema="oscuro"] {
+  --fondo: #121214; --texto: #f3f4f6; --gris: #9ca3af; --borde: #34343b;
+  --campo: #1f1f24; --negro: #f3f4f6; --sobre-negro: #111;
+}
