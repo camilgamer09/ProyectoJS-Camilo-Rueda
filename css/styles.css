@@ -1,3 +1,4 @@
+/*Colores del fondo*/
 :root {
   --fondo: #fff; --texto: #111; --gris: #6b7280; --borde: #e5e7eb;
   --campo: #f3f3f5; --negro: #0a0a14; --sobre-negro: #fff;
@@ -9,7 +10,7 @@
 }
 
 * { box-sizing: border-box; }
-
+/*Tamaños y colores de fondo aplicados de la pagina */
 body {
   margin: 0;
   font-family: system-ui, sans-serif;
@@ -21,6 +22,8 @@ body {
 .contenedor { max-width: 940px; margin: 0 auto; padding: 0 16px; }
 .gris { color: var(--gris); font-size: 13px; }
 h2 { margin: 24px 0 0; font-size: 25px; }
+
+/*Header*/
 
 header, .franja { border-bottom: 1px solid var(--borde); }
 .barra { display: flex; align-items: center; gap: 16px; min-height: 56px; }
@@ -35,7 +38,7 @@ header, .franja { border-bottom: 1px solid var(--borde); }
   background: var(--campo);
   color: var(--texto);
 }
-
+/*btn de carrito y cambio de tema*/
 .icono {
   position: relative;
   display: inline-flex;
@@ -49,7 +52,7 @@ header, .franja { border-bottom: 1px solid var(--borde); }
   color: var(--texto);
 }
 
-
+/*fonts de google*/
 .icono .material-symbols-outlined {
   font-size: 22px;
   display: flex;
@@ -69,3 +72,26 @@ header, .franja { border-bottom: 1px solid var(--borde); }
   font-size: 11px;
   text-align: center;
 }
+
+/*categorias*/
+#categorias { display: flex; gap: 8px; padding: 12px 16px; overflow-x: auto; }
+
+/*cambio de color del fondo*/
+.pildora {
+  flex: none;
+  padding: 5px 14px;
+  border: 1px solid var(--borde);
+  border-radius: 999px;
+  background: var(--fondo);
+  color: var(--texto);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.pildora.activa, .btn-agregar { background: var(--negro); color: var(--sobre-negro); }
+
+/*welcome*/
+.welcome { max-width: 620px; margin: 0 auto; padding: 50px 16px 40px; text-align: center; }
+.welcome h1 { margin: 0 0 12px; font-size: clamp(30px, 6vw, 50px); font-weight: 400; }
+.welcome p { margin: 0; color: var(--gris); }
+
