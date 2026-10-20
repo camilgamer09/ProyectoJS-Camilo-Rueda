@@ -21,3 +21,51 @@ body {
 .contenedor { max-width: 940px; margin: 0 auto; padding: 0 16px; }
 .gris { color: var(--gris); font-size: 13px; }
 h2 { margin: 24px 0 0; font-size: 25px; }
+
+header, .franja { border-bottom: 1px solid var(--borde); }
+.barra { display: flex; align-items: center; gap: 16px; min-height: 56px; }
+.logo { font-size: 18px; }
+.iconos { display: flex; gap: 4px; }
+
+#busqueda {
+  flex: 1;
+  padding: 9px 12px;
+  border: none;
+  border-radius: 8px;
+  background: var(--campo);
+  color: var(--texto);
+}
+
+.icono {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--texto);
+}
+
+
+.icono .material-symbols-outlined {
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--texto);
+}
+
+#contador {
+  position: absolute;
+  top: 2px;
+  right: 0;
+  min-width: 17px;
+  border-radius: 9px;
+  background: var(--negro);
+  color: var(--sobre-negro);
+  font-size: 11px;
+  text-align: center;
+}
