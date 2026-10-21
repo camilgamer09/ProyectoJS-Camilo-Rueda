@@ -218,3 +218,41 @@ function aplicarTema(oscuro) {
  document.documentElement.dataset.tema = oscuro ? "oscuro" : "claro";
  localStorage.setItem("tema", oscuro ? "oscuro" : "claro");
 }
+
+//Eventos}
+busqueda.addEventListener("input", mostrarProductos);
+orden.addEventListener("change", mostrarProductos);
+
+document.getElementById("btn-limpiar").addEventListener("click", function () {
+ busqueda.value = "";
+ orden.value = "";
+ categoria = "todas";
+ crearCategorias();
+ mostrarProductos();
+});
+
+document.getElementById("btn-carrito").addEventListener("click", () => (panel.hidden = false));
+document.getElementById("btn-cerrar").addEventListener("click", () => (panel.hidden = true));
+
+document.getElementById("btn-vaciar").addEventListener("click", function () {
+ if (confirm("¿Vaciar el carrito?")) {
+  carrito = {};
+  guardarCarrito();
+ }
+});
+
+document.getElementById("btn-tema").addEventListener("click", function () {
+ aplicarTema(document.documentElement.dataset.tema !== "oscuro");
+});
+
+document.getElementById("prev").addEventListener("click", function () {
+ document.getElementById("destacados").scrollBy({ left: -300, behavior: "smooth" });
+});
+
+document.getElementById("next").addEventListener("click", function () {
+ document.getElementById("destacados").scrollBy({ left: 300, behavior: "smooth" });
+});
+
+document.addEventListener("keydown", function (e) {
+ if (e.key === "Escape") panel.hidden = true;
+});
