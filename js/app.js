@@ -213,3 +213,8 @@ function mostrarCarrito() {
  document.getElementById("contador").textContent = unidades;
 }
 
+//CAMBIO DE COLOR TEMAAAAAAAA
+function aplicarTema(oscuro) {
+ document.documentElement.dataset.tema = oscuro ? "oscuro" : "claro";
+ localStorage.setItem("tema", oscuro ? "oscuro" : "claro");
+}
