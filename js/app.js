@@ -136,3 +136,80 @@ function crearCategorias() {
   barra.appendChild(boton);
  });
 }
+// Carrito
+function cargarCarrito() {
+ try {
+  return JSON.parse(localStorage.getItem("carrito")) || {};
+ } catch (error) {
+  return {}; 
+ }
+}
+
+function guardarCarrito() {
+ localStorage.setItem("carrito", JSON.stringify(carrito));
+ mostrarCarrito();
+}
+
+function agregarAlCarrito(id) {
+ if (carrito[id]) {
+  carrito[id].cantidad++;
+ } else {
+  carrito[id] = { producto: productos.find((p) => p.id === id), cantidad: 1 };
+ }
+ guardarCarrito();
+}
+
+function cambiarCantidad(id, cambio) {
+ carrito[id].cantidad += cambio;
+ if (carrito[id].cantidad <= 0) delete carrito[id];
+ guardarCarrito();
+}
+
+function eliminar(id) {
+ delete carrito[id];
+ guardarCarrito();
+}
+
+function mostrarCarrito() {
+ const lista = document.getElementById("lista-carrito");
+ const items = Object.values(carrito);
+ let total = 0;
+ let unidades = 0;
+
+ lista.replaceChildren();
+ if (!items.length) lista.textContent = "Tu carrito está vacío.";
+
+ items.forEach(function (item) {
+  const p = item.producto;
+  total += p.price * item.cantidad;
+  unidades += item.cantidad;
+
+  const menos = crear("button", "-");
+  menos.addEventListener("click", () => cambiarCantidad(p.id, -1));
+
+  const mas = crear("button", "+");
+  mas.addEventListener("click", () => cambiarCantidad(p.id, 1));
+
+  const quitar = crear("button", "Eliminar");
+  quitar.addEventListener("click", () => eliminar(p.id));
+
+  const img = document.createElement("img");
+  img.src = p.image;
+  img.alt = p.title;
+
+  const datos = crear("div", "", "item-datos");
+  datos.append(
+   crear("p", p.title),
+   menos, crear("span", " " + item.cantidad + " "), mas, quitar,
+   crear("p", "Subtotal: " + dinero(p.price * item.cantidad))
+  );
+
+  const fila = crear("div", "", "item");
+  fila.append(img, datos);
+  lista.appendChild(fila);
+ });
+
+ document.getElementById("total").textContent = dinero(total);
+ document.getElementById("contador").textContent = unidades;
+}
+
