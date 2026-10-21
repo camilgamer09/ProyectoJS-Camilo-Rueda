@@ -30,7 +30,7 @@ function nombreCategoria(c) {
  };
  return nombres[c] || c;
 }
-
+/*
 /*API*/
 async function obtenerProductos() {
   mensaje.textContent = "Cargando productos...";
@@ -42,7 +42,7 @@ async function obtenerProductos() {
     productos = await respuesta.json();
     mensaje.textContent = "";
 
-    crearCategoria();
+    crearCategorias();
     mostrarDestacados();
     mostrarProductos();
   } catch (error) {
@@ -83,3 +83,56 @@ function crearTarjeta(p, destacado) {
  return clone;
 }
 
+function mostrarDestacados() {
+ // Los 3 mejor calificados
+ const mejores = [...productos]
+  .sort((a, b) => b.rating.rate - a.rating.rate)
+  .slice(0, 3);
+
+ document.getElementById("destacados")
+  .replaceChildren(...mejores.map((p) => crearTarjeta(p, true)));
+}
+
+function mostrarProductos() {
+ const texto = busqueda.value.toLowerCase();
+
+ // Filtrar por búsqueda y categoría
+ const lista = productos.filter(function (p) {
+  const coincide = p.title.toLowerCase().includes(texto) ||
+   p.description.toLowerCase().includes(texto);
+  return coincide && (categoria === "todas" || p.category === categoria);
+ });
+
+
+  // Ordenar
+  if (orden.value === "precio-asc") lista.sort((a, b) => a.price - b.price);
+  if (orden.value === "precio-desc") lista.sort((a, b) => b.price - a.price);
+  if (orden.value === "nombre") lista.sort((a, b) => a.title.localeCompare(b.title));
+  if (orden.value === "calificacion") lista.sort((a, b) => b.rating.rate - a.rating.rate);
+
+ document.getElementById("productos")
+  .replaceChildren(...lista.map((p) => crearTarjeta(p, false)));
+
+ document.getElementById("resultados").textContent =
+  lista.length ? lista.length + " resultados" : "No hay productos con esos filtros.";
+
+}
+
+function crearCategorias() {
+ const nombres = ["todas", ...new Set(productos.map((p) => p.category))];
+ const barra = document.getElementById("categorias");
+ barra.replaceChildren();
+
+ nombres.forEach(function (nombre) {
+  const boton = crear("button", nombre === "todas" ? "Todos" : nombreCategoria(nombre), "pildora");
+  if (nombre === categoria) boton.classList.add("activa");
+
+  boton.addEventListener("click", function () {
+   categoria = nombre;
+   crearCategorias();
+   mostrarProductos();
+  });
+
+  barra.appendChild(boton);
+ });
+}
