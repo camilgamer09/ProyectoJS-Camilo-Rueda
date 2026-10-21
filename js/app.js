@@ -256,3 +256,7 @@ document.getElementById("next").addEventListener("click", function () {
 document.addEventListener("keydown", function (e) {
  if (e.key === "Escape") panel.hidden = true;
 });
+//el motor de mi pagina que no se pierda nada aunque la cierre del navegador
+aplicarTema(localStorage.getItem("tema") === "oscuro");
+mostrarCarrito();
+obtenerProductos();
